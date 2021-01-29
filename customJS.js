@@ -11,8 +11,6 @@ loginBtn.addEventListener('click',function(){
 //* Deposit button even handler
 const depositBtn = document.getElementById('addDeposit');
 depositBtn.addEventListener('click',function(){
-    // const depositAmount = document.getElementById('depositAmount').value;
-    // const depositNumber = parseFloat(depositAmount);
     const depositNumber = getInputNumber('depositAmount')
     
 
@@ -28,7 +26,13 @@ depositBtn.addEventListener('click',function(){
 const withdrawBtn = document.getElementById('addWithdraw');
 withdrawBtn.addEventListener('click', function(){
     const withdrawNumber = getInputNumber('withdrawAmount')
-    console.log(withdrawNumber);
+    
+
+    updateSpanText('currentWithdraw', withdrawNumber);
+    updateSpanText('currentBalance', -1 * withdrawNumber)
+
+
+    document.getElementById('withdrawAmount').value = '';
 })
 
 
@@ -41,10 +45,10 @@ function getInputNumber(id){
     return amountNumber;
 }
 
-function updateSpanText(id, depositNumber){
+function updateSpanText(id, addedNumber){
     const current = document.getElementById(id).innerText;
     const currentNumber = parseFloat(current);
-    const totalAmount = depositNumber + currentNumber;
+    const totalAmount = currentNumber + addedNumber;
     document.getElementById(id).innerText = totalAmount;
 }
 
